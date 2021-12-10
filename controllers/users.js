@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const user = require('../models/user');
+const { generateToken } = require('../helpers/jwt');
 
 const getUsers = async (req, res) => {
 
@@ -33,13 +33,14 @@ const postUser = async (req, res) => {
 
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt);
-
-
         await user.save();
+
+        const token = await generateToken(user.id);
 
         return res.json({
             ok: true,
-            user
+            user,
+            token
         });
 
     }catch(error){
@@ -117,7 +118,7 @@ const deleteUser = async (req, res) => {
         }
 
 
-        await user.findByIdAndDelete(uid);
+        await User.findByIdAndDelete(uid);
 
         return res.json({
             ok: true,
