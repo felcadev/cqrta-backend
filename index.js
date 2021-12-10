@@ -7,8 +7,12 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 dbConnection();
+
+
+app.use('/api/users', require('./routes/users'));
 
 
 app.get('/', (req, res) => {
