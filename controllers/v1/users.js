@@ -1,6 +1,6 @@
-const User = require('../models/user');
+const User = require('../../models/v1/user');
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('../helpers/jwt');
+const { generateToken } = require('../../helpers/jwt');
 
 const getUsers = async (req, res) => {
 

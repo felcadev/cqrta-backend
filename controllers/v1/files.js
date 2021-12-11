@@ -1,4 +1,4 @@
-const File = require('../models/file');
+const File = require('../../models/v1/file');
 
 
 const getFiles = async (req, res) => {

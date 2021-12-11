@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { getFiles, postFiles, updateFiles, deleteFiles } = require('../controllers/files');
+const { getFiles, postFiles, updateFiles, deleteFiles } = require('../../controllers/v1/files');
 const { check } = require('express-validator');
-const { validateFields } = require('../middlewares/fields-validator');
-const { validateToken } = require('../middlewares/token-validator');
+const { validateFields } = require('../../middlewares/fields-validator');
+const { validateToken } = require('../../middlewares/token-validator');
 
 
 const router = Router();

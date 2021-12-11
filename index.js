@@ -12,11 +12,11 @@ app.use(express.json());
 dbConnection();
 
 
-app.use('/api/users', require('./routes/users'));
-app.use('/api/shops', require('./routes/shops'));
-app.use('/api/files', require('./routes/files'));
-app.use('/api/searches', require('./routes/searches'));
-app.use('/api/login', require('./routes/auth'));
+app.use('/api/v1/users', require('./routes/v1/users'));
+app.use('/api/v1/shops', require('./routes/v1/shops'));
+app.use('/api/v1/files', require('./routes/v1/files'));
+app.use('/api/v1/searches', require('./routes/v1/searches'));
+app.use('/api/v1/login', require('./routes/v1/auth'));
 
 
 app.get('/', (req, res) => {

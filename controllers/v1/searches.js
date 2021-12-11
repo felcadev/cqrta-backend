@@ -1,5 +1,5 @@
-const  User  = require('../models/user');
-const  Shop  = require('../models/shop');
+const  User  = require('../../models/v1/user');
+const  Shop  = require('../../models/v1/shop');
 
 
 
@@ -12,9 +12,6 @@ const getAll = async (req, res) => {
         User.find({name : regExp}),
         Shop.find({name : regExp})
     ]);
-
-
-
 
     return res.json({
         ok: true,
