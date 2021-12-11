@@ -4,12 +4,21 @@ const { generateToken } = require('../helpers/jwt');
 
 const getUsers = async (req, res) => {
 
-    const users = await User.find({}, 'name email role google');
+    const skip = Number(req.query.skip) || 0;
+    const limit = Number(req.query.limit) || 10;
+
+    const [users, count] = await Promise.all([
+        User.find({}, 'name email role google')
+        .skip(skip)
+        .limit(limit),
+        User.count()
+    ]);
 
 
     res.json({
         ok: true,
-        users
+        users,
+        count
     });
 }
 
@@ -55,11 +64,11 @@ const postUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
 
-    const uid = req.params.uid;
+    const id = req.params.id;
 
     try{
 
-        let dbUser = await User.findById(uid);
+        let dbUser = await User.findById(id);
 
         if(!dbUser){
             return res.status(404).json({
@@ -84,7 +93,7 @@ const updateUser = async (req, res) => {
 
         fields.email = email;
 
-        const updatedUser = await User.findByIdAndUpdate(uid, fields, { new: true} );
+        const updatedUser = await User.findByIdAndUpdate(id, fields, { new: true} );
 
         return res.json({
             ok: true,
@@ -104,11 +113,11 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
 
-    const uid = req.params.uid;
+    const id = req.params.id;
 
     try{
 
-        const dbUser = await User.findById(uid);
+        const dbUser = await User.findById(id);
         
         if(!dbUser){
             return res.status(404).json({
@@ -118,7 +127,7 @@ const deleteUser = async (req, res) => {
         }
 
 
-        await User.findByIdAndDelete(uid);
+        await User.findByIdAndDelete(id);
 
         return res.json({
             ok: true,

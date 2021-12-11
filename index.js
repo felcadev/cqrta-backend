@@ -13,6 +13,9 @@ dbConnection();
 
 
 app.use('/api/users', require('./routes/users'));
+app.use('/api/shops', require('./routes/shops'));
+app.use('/api/files', require('./routes/files'));
+app.use('/api/searches', require('./routes/searches'));
 app.use('/api/login', require('./routes/auth'));
 
 
