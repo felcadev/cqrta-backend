@@ -15,7 +15,6 @@ const getFiles = async (req, res) => {
 
 const postFiles = async (req, res) => {
 
-
     const id = req.id;
 
     //TODO: upload file and save it in mongodb

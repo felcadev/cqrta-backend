@@ -17,6 +17,8 @@ app.use('/api/v1/shops', require('./routes/v1/shops'));
 app.use('/api/v1/files', require('./routes/v1/files'));
 app.use('/api/v1/searches', require('./routes/v1/searches'));
 app.use('/api/v1/login', require('./routes/v1/auth'));
+app.use('/api/v1/upload', require('./routes/v1/uploads'));
+
 
 
 app.get('/', (req, res) => {
